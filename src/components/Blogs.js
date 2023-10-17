@@ -18,11 +18,9 @@ function Blogs() {
 
                 return res.json();
             }).then((data) => {
-                setTimeout(() => {
-                    setIsLoading(false);
-                    setError(null);
-                    setBlogs(data);
-                }, 2000);
+                setIsLoading(false);
+                setError(null);
+                setBlogs(data);
             }).catch((err) => {
                 setIsLoading(false);
                 setError(err.message);
