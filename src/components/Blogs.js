@@ -1,10 +1,16 @@
-import allBlogs from "../json/blogData.json";
 import BlogList from "./BlogList";
 import { useState } from "react";
 
 function Blogs() {
 
-    const [blogs, setBlogs] = useState(allBlogs); // state variable to hold blog data
+    const [blogs, setBlogs] = useState(null); // state variable to hold blog data
+
+    fetch("http://localhost:4000/blogs")
+        .then((res) => {
+            return res.json();
+        }).then((data) => {
+            setBlogs(data);
+        });
 
     function deleteBlog(id) {
       let filteredBlogs = blogs.filter((blog) => { return blog.id != id });
@@ -14,7 +20,9 @@ function Blogs() {
     }
 
     return (
-        <BlogList blogs={blogs} deleteBlog={deleteBlog}/>
+        <>
+            {blogs && <BlogList blogs={blogs} deleteBlog={deleteBlog}/>}
+        </>
     )
 }
 
