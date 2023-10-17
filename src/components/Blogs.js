@@ -9,7 +9,7 @@ function Blogs() {
     const [error, setError] = useState(null); 
 
     useEffect(() => {
-        fetch("http://localhost:4000/blogs")
+        fetch("http://localhost:4000/blogs") // GET request
             .then((res) => {
 
                 if (!res.ok) {
